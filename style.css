@@ -25,6 +25,7 @@ div#my_popup {
   background-color:white;
   border: 1px solid gray;
   padding:10px;
+  overflow-x:scroll;
 }
 
 div#map {

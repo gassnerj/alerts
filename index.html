@@ -14,7 +14,7 @@
       <h4>
         States:
       </h4>
-<select name="state" id="state" onchange="loadCounties(this)">
+<select name="state" id="state"> <button id="loadAlertsByState" onclick="loadDoc()">States</button>
   <option value="" selected="selected">Select a State</option>
   <option value="AL">Alabama</option>
   <option value="AK">Alaska</option>
@@ -79,18 +79,23 @@
     <table id="alerts">
       <tbody>
         <tr>
-          <th colspan="2" id="title"></th>
+          <th colspan="3" id="title"></th>
         </tr>
         <tr>
-          <th>Issued</th>
+          <th></th>
+          <th>Certainty</th>
           <th>Event</th>
         </tr>
       </tbody>
     </table>
   </div>
   <div id="my_popup">
-    <h1 id="alertHeadline"></h1>
+    <h2 id="alertHeadline"></h2>
     <p id="alertDescription"></p>
+    <h3>
+      Instructions:
+    </h3>
+    <p id="instruction"</p>
     <table id="params">
       <tbody>
         <tr>

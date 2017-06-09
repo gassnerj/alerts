@@ -1,7 +1,12 @@
 var jsonAlerts;
-var url = "https://api.weather.gov/alerts?active=1&zone_type=land&severity=severe";
+
+
+
 
 function loadDoc(url) {
+
+
+
   var xhttp = new XMLHttpRequest();
   var x;
   var alertObj;
@@ -31,16 +36,18 @@ function loadDoc(url) {
 
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
-
+          var cell3 = row.insertCell(2);
           cell1.setAttribute("class", "view");
           cell2.setAttribute("class", "eventDisplay");
+          cell3.setAttribute("class", "certaintyColumn")
 
           var aID = "http://api.weather.gov/alerts/" + x['properties'].id;
 
           row.setAttribute("alt", x['properties'].areaDesc);
           cell1.innerHTML = "<a href=\"#\" onclick=loadDetails(\"" + x['properties'].id + "\")>View Alert</a>";
           cell1.setAttribute("class", "my_popup_open");
-          cell2.innerHTML = x['properties'].event + " " + "for" + " " + x['properties'].areaDesc;
+          cell3.innerHTML = x['properties'].event + " " + "for" + " " + x['properties'].areaDesc;
+          cell2.innerHTML = x['properties'].certainty;
           switch (x['properties'].event) {
             case "Severe Thunderstorm Warning":
               row.setAttribute("class", "severe");
@@ -57,8 +64,8 @@ function loadDoc(url) {
           }
 
         } else {
-          row.deleteRow(x);
-          alert("Warning " + x['properties'].id + " expired.");
+          //row.deleteRow(x);
+          //alert("Warning " + x['properties'].id + " expired.");
 
         }
       }
@@ -70,13 +77,36 @@ function loadDoc(url) {
 
 
 $(document).ready(function() {
+  
+  //var url = "https://api.weather.gov/alerts?active=1&zone_type=land&severity=severe";
+
+
+    document.getElementById("state").onchange = function() {
+      var selectedString = document.getElementById("state").options[document.getElementById("state").selectedIndex].value;
+      var url = "https://api.weather.gov/alerts/active/area/" + selectedString
+      loadCounties(selectedString);
+      loadDoc(url);
+      alert(url);
+    }
+    
+    if(document.getElementById("state").options[document.getElementById("state").selectedIndex].value == "") {
+      var url = "https://api.weather.gov/alerts?active=1&zone_type=land&severity=severe";
+      alert(url);
+    }
+
+
   loadDoc(url);
-  setInterval("location.reload(true)", 1000000);
+  setInterval("loadDoc(url)", 60000);
+
   $('#my_popup').popup();
 });
 
+function refreshAlerts() {
+  $("#alerts").load(url + " #alerts");
+}
+
 function loadDetails(alertID) {
-  alertID = "http://api.weather.gov/alerts/" + alertID;
+  alertID = "https://api.weather.gov/alerts/" + alertID;
 
   var xhttp2 = new XMLHttpRequest();
   var alertObj2;
@@ -90,6 +120,7 @@ function loadDetails(alertID) {
 
       document.getElementById("alertHeadline").innerHTML = alertObj2['properties'].headline;
       document.getElementById("alertDescription").innerHTML = alertObj2['properties'].description;
+      document.getElementById("instruction").innerHTML = alertObj2['properties'].instruction;
 
       if (alertObj2['properties'].event != "Severe Thunderstorm Warning") {
         document.getElementById("params").setAttribute("style", "display:none;");
