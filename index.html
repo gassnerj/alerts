@@ -4,6 +4,7 @@
   <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="alert.js"></script>
   <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBv0m_yJ02CB1WKBXG-a2bixJ1OIonYYBI&callback=initMap" asyncdefer></script>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -21,10 +22,30 @@
       </tbody>
     </table>
   </div>
-<div id="my_popup">This is a test.
-  <p id="alertID"></p>
-  <button class="my_popup_close">Close</button>
-</div>
+  <div id="my_popup">
+    <h1 id="alertHeadline"></h1>
+    <p id="alertDescription"></p>
+    <table id="params">
+      <tbody>
+        <tr>
+          <td>Wind Speed</td>
+          <td id="windGust"></td>
+        </tr>
+        <tr>
+          <td>Hail Size</td>
+          <td id="hailSize"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="my_popup_close">Close</button>
+  </div>
+
+  <div id="map">
+    <script>
+      initMap();
+    </script>
+
+  </div>
 
 </body>
 

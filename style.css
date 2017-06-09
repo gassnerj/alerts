@@ -19,9 +19,19 @@ div#my_popup {
   padding:10px;
 }
 
+div#map {
+  height:500px;
+  width:700px;
+  float:right;
+}
+
+p#alertDescription {
+  border:1px solid black;
+  padding:5px;
+}
+
 table#alerts {
-  margin-left:auto;
-  margin-right:auto;
+  /*test*/
 }
 
 table,
