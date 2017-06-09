@@ -1,14 +1,22 @@
-html {
+html, body{
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10pt;
+  margin:0;
 }
 
 div#container {
   width:auto;
-  height:auto;
+  height:100%;
   padding:5px;
   margin-left:auto;
   margin-right:auto;
+}
+
+div#left {
+  width:150px;
+  height:100%;
+  border:1px solid black;
+  float:left;
 }
 
 div#my_popup {
@@ -24,14 +32,46 @@ div#map {
   width:700px;
   float:right;
 }
+select#counties {
+  width:140px;
+}
+select#state {
+  width:140px;
+}
+tr.thunderstorm {
+  background-color:yellow;
+}
+tr.tornado {
+  background-color:red;
+}
+
+tr.flood {
+  background-color:green;
+  color:white;
+}
+
+tr.severew {
+  background-color:black;
+  color:yellow;
+}
+
+td.my_popup_open {
+  width:100px;
+  text-align:center;
+}
+
+td.eventDisplay {
+  width:auto;
+}
 
 p#alertDescription {
   border:1px solid black;
   padding:5px;
 }
 
-table#alerts {
-  /*test*/
+table#alerts td{
+  padding:2px;
+  font-size:10pt;
 }
 
 table,
