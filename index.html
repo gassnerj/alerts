@@ -1,24 +1,31 @@
 <html>
-  <head>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-	<table id="alerts">
-         <tbody>
-           <tr><th colspan="2" id="title"></th></tr>
-           <tr>
-             <th>Issued</th>
-             <th>Event</th>
-           </tr>
-         </tbody>
-        </table>
-	<button type="button" onclick="loadDoc()">Fetch JSON</button>
+<head>
+  <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="alert.js"></script>
+  <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
-<div id="show-data"></div>
+<body>
+  <div id="container">
+    <table id="alerts">
+      <tbody>
+        <tr>
+          <th colspan="2" id="title"></th>
+        </tr>
+        <tr>
+          <th>Issued</th>
+          <th>Event</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div id="my_popup">This is a test.
+  <p id="alertID"></p>
+  <button class="my_popup_close">Close</button>
+</div>
 
-<a href="#" id="get-data">Get Alerts</a>
-    <script type="text/javascript" src="alert.js"></script>
-    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
-  </body>
+</body>
+
 </html>
